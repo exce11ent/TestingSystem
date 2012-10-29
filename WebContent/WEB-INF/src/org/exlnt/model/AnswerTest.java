@@ -1,10 +1,8 @@
 package org.exlnt.model;
 
-import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;

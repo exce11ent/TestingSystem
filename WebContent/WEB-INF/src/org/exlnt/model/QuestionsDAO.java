@@ -11,22 +11,28 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class QuestionsDAO {
-	private static SessionFactory sessionFactory;
-	private static ServiceRegistry serviceRegistry;
-
-	private static SessionFactory configureSessionFactory() throws HibernateException {
-	    Configuration configuration = new Configuration();
-	    configuration.configure();
-	    serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();        
-	    sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-	    return sessionFactory;
-	}
 	
+	@Autowired
+	private SessionFactory sessionFactory;
+
+
+//	private static ServiceRegistry serviceRegistry;
+//
+//	private static SessionFactory configureSessionFactory() throws HibernateException {
+//	    Configuration configuration = new Configuration();
+//	    configuration.configure();
+//	    serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();        
+//	    sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+//	    return sessionFactory;
+//	}
+	
+
 	public Question getQuestion(){
-		configureSessionFactory();
-		Session session = sessionFactory.openSession();
+		//configureSessionFactory();
+		Session session = getSessionFactory().openSession();
 		
 		Query query = session.createQuery("from Question order by RAND()");
 		query.setMaxResults(1);
@@ -54,8 +60,8 @@ public class QuestionsDAO {
 	}
 	
 	public boolean isAnswerCorrect(Integer answerId, Integer questionId){
-		configureSessionFactory();
-		Session session = sessionFactory.openSession();
+		//configureSessionFactory();
+		Session session = getSessionFactory().openSession();
 //		Query query = session.createQuery("from answers A where A.answerId=" + answerId.toString());
 //		
 //		Collection<Answer> ca = new ArrayList<Answer>();
@@ -88,5 +94,13 @@ public class QuestionsDAO {
 		session.close();
 		
 		return isAnswerRight;
+	}
+	
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 }
