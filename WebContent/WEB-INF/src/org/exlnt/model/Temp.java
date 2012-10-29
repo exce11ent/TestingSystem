@@ -10,8 +10,8 @@ public class Temp {
 	 */
 	public static void main(String[] args) {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("spring.xml"); 
-		QuestionsDAO qd = ac.getBean("QuestionsDAO", QuestionsDAO.class);
-		System.out.println(qd.isAnswerCorrect(2, 1));
+		Model model = ac.getBean("model", Model.class);
+		System.out.println(model.isAnswerCorrect(2, 1));
 	}
 
 }

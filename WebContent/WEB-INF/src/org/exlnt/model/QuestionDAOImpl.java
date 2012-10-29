@@ -13,25 +13,13 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class QuestionsDAO {
+public class QuestionDAOImpl implements QuestionDAO {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
 
 
-//	private static ServiceRegistry serviceRegistry;
-//
-//	private static SessionFactory configureSessionFactory() throws HibernateException {
-//	    Configuration configuration = new Configuration();
-//	    configuration.configure();
-//	    serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();        
-//	    sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-//	    return sessionFactory;
-//	}
-	
-
 	public Question getQuestion(){
-		//configureSessionFactory();
 		Session session = getSessionFactory().openSession();
 		
 		Query query = session.createQuery("from Question order by RAND()");
@@ -42,8 +30,6 @@ public class QuestionsDAO {
 		
 		session.getTransaction().commit();
 		cq = query.list();
-		
-		
 		
 		for (Question qu : cq){
 			qu.getQuestionText();
@@ -60,16 +46,7 @@ public class QuestionsDAO {
 	}
 	
 	public boolean isAnswerCorrect(Integer answerId, Integer questionId){
-		//configureSessionFactory();
 		Session session = getSessionFactory().openSession();
-//		Query query = session.createQuery("from answers A where A.answerId=" + answerId.toString());
-//		
-//		Collection<Answer> ca = new ArrayList<Answer>();
-//		
-//		session.beginTransaction();
-//		session.getTransaction().commit();
-//		ca = query.list();
-		
 		Query query = session.createQuery("from Question Q where questionId = " + questionId.toString());
 		query.setMaxResults(1);
 		
