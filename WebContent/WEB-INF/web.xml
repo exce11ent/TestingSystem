@@ -5,5 +5,26 @@
 		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
 		 id="WebApp_ID" version="3.0">
   <display-name>TestingSystem</display-name>
+
+  <servlet>
+  	<servlet-name>Testing Controller</servlet-name>
+  	<servlet-class>org.exlnt.controller.TestingController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>Testing Controller</servlet-name>
+  	<url-pattern>/testing</url-pattern>
+  </servlet-mapping>
+  
+<!--    <context-param> -->
+<!-- 	<param-name>contextConfigLocation</param-name> -->
+<!-- 	<param-value>/WEB-INF/src/spring.xml</param-value> -->
+<!--   </context-param> -->
+ 
+<!--   <listener> -->
+<!--     <listener-class> -->
+<!--           org.springframework.web.context.ContextLoaderListener -->
+<!--     </listener-class> -->
+<!--   </listener> -->
   
 </web-app>

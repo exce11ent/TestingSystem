@@ -36,7 +36,7 @@
 	</bean>
 	
 	<bean id="model" class="org.exlnt.model.Model">
-		<property name="maxQuestions" value="5"/>
+		<property name="maxQuestions" value="7"/>
 		<property name="dataAccessObject" ref="QuestionDAOImpl"/>
 	</bean>
 	

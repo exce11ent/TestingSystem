@@ -12,6 +12,7 @@ public class Temp {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("spring.xml"); 
 		Model model = ac.getBean("model", Model.class);
 		System.out.println(model.isAnswerCorrect(2, 1));
+		System.out.println(model.calcMark(3));
 	}
 
 }

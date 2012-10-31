@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+<link rel="stylesheet" href="style.css" type="text/css">
+<script type="text/javascript" src="jquery-1.8.2.js"></script>
+<title>Testing system</title>
+<script>
+function display_alert()
+  {
+  alert("Hello! I am an alert box!!");
+  }
+  
+function onBtn1Click(){
+    $.ajax({
+    	type: 		'POST',
+    	dataType:	'html',
+    	cache:		false,
+		url: 		'testing',
+		success: function(html) {
+				$('#random').append(html);           				
+		}
+	});
+		
+}
+</script>
+</head>
+<body>
+
+<div id="header">
+	<img src="img/Logo.png"/>
+</div>
+<div id="content">
+	<div id="tstForm">
+	<form action="testing" method="post" target="testing">
+		<input id="btn1" type="button" value="button" onclick="onBtn1Click()" />
+		<input type="submit" />
+	</form>
+	<div id="random">
+	
+	</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,26 +1,19 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="org.exlnt.model.Question; " %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="style.css" type="text/css">
-<title>Insert title here</title>
-</head>
-<body>
+    pageEncoding="ISO-8859-1" import="org.exlnt.model.Question, org.exlnt.model.Answer, java.util.*" %>
+<% 
+	Question question = (Question) session.getAttribute("question");
+	request.setAttribute("answers", question.getVariants());
+%>
 
-<div id="header">
-	<img src="img/Logo.png"/>
-</div>
-<div id="content">
-	<p>Some Text</p>
-	<div id="tstForm">
+<form>
+	<%=question.getQuestionText() %>
+	<br>
+	<c:forEach items="answers" var="item">
+		<input type="radio" name="radioGroup" value="${item.answerId}"> ${item.text} <br>
+	</c:forEach>
 	
-	<form action="">
+	<input type="button" value="  Answer  " onclick="onBtn1Click()">
 		
-	</form>
-	</div>
-</div>
 
-</body>
-</html>
+</form>

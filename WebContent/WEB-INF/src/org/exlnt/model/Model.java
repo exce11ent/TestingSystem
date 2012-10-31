@@ -10,6 +10,11 @@ public class Model {
 	@Autowired
 	private int maxQuestions;
 	
+	public int calcMark(int correctCount) {
+		float result = ((float)correctCount) / ((float)getMaxQuestions()) * 100;
+		return Math.round(result);
+	}
+	
 	public Question getQuestion() {
 		return dataAccessObject.getQuestion();
 	}
